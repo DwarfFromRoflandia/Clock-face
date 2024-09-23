@@ -27,8 +27,9 @@ public class Clock : MonoBehaviour
     {
         iTween.RotateTo(_secondHand, iTween.Hash("z", valueSeconds * 6 * -1, "time", 1, "easetype", "easeOutQuint"));
         iTween.RotateTo(_minuteHand, iTween.Hash("z", valueMinutes * 6 * -1, "time", 1, "easetype", "easeOutElastic"));
-        float hourDistance = (float)(valueMinutes) / 60f;
-        iTween.RotateTo(_hourHand, iTween.Hash("z", (valueHours + hourDistance) * 360 / 12 * -1, "time", 1, "easetype", "easeOutElastic"));
+        float hourDistance = (float)valueMinutes / 60f;
+        float hourAngle = ((valueHours % 12) + hourDistance) * 360f / 12f * -1f;
+        iTween.RotateTo(_hourHand, iTween.Hash("z", hourAngle, "time", 1, "easetype", "easeOutElastic"));
 
         int hourFormat = valueHours % 12 + (System.DateTime.Now.Hour >= 12 ? 12 : 0);
         _timeText.text = $"{hourFormat:D2}:{valueMinutes:D2}:{valueSeconds:D2}";

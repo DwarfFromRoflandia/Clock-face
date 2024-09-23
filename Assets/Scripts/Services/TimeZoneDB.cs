@@ -6,8 +6,8 @@ using System;
 
 public class TimeZoneDB : MonoBehaviour
 {
-    private string apiKey = "15KYYF5JY2CO";
-    private string apiUrl = "https://api.timezonedb.com/v2.1/get-time-zone";
+    private string _apiKey = "15KYYF5JY2CO";
+    private string _apiUrl = "https://api.timezonedb.com/v2.1/get-time-zone";
 
     private Action<int, int, int> _callback;
     
@@ -24,7 +24,7 @@ public class TimeZoneDB : MonoBehaviour
 
     private IEnumerator GetMoscowTime(Action<int, int, int> callback)
     {
-        string url = $"{apiUrl}?key={apiKey}&format=json&by=zone&zone=Europe/Moscow";
+        string url = $"{_apiUrl}?key={_apiKey}&format=json&by=zone&zone=Europe/Moscow";
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {

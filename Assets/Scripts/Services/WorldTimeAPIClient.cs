@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 public class WorldTimeAPIClient : MonoBehaviour
 {
-    private string apiUrl = "https://worldtimeapi.org/api/timezone/Europe/Moscow";
+    private string _apiUrl = "https://worldtimeapi.org/api/timezone/Europe/Moscow";
 
     private Action<int, int, int> _callback;
     
@@ -23,7 +23,7 @@ public class WorldTimeAPIClient : MonoBehaviour
 
     private IEnumerator GetTimeFromAPI(Action<int, int, int> callback)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(apiUrl))
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(_apiUrl))
         {
             yield return webRequest.SendWebRequest();
 
